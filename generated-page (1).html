@@ -1,0 +1,634 @@
+<html lang="vi" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nihongo Center - Nền tảng học tiếng Nhật cao cấp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <style>
+        :root {
+            --navy: #0D1B2A;
+            --cream: #F5ECD7;
+            --red: #C1121F;
+            --gold: #D4AF37;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--cream);
+            color: var(--navy);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .font-jp {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        /* Subtle Seigaiha-inspired wave overlay using radial gradients */
+        .bg-pattern-dark {
+            background-color: var(--navy);
+            background-image: radial-gradient(circle at 100% 150%, var(--navy) 24%, rgba(245, 236, 215, 0.03) 25%, rgba(245, 236, 215, 0.03) 28%, var(--navy) 29%, var(--navy) 36%, rgba(245, 236, 215, 0.03) 36%, rgba(245, 236, 215, 0.03) 40%, transparent 40%, transparent),
+                              radial-gradient(circle at 0 150%, var(--navy) 24%, rgba(245, 236, 215, 0.03) 25%, rgba(245, 236, 215, 0.03) 28%, var(--navy) 29%, var(--navy) 36%, rgba(245, 236, 215, 0.03) 36%, rgba(245, 236, 215, 0.03) 40%, transparent 40%, transparent),
+                              radial-gradient(circle at 50% 100%, rgba(245, 236, 215, 0.03) 10%, var(--navy) 11%, var(--navy) 23%, rgba(245, 236, 215, 0.03) 24%, rgba(245, 236, 215, 0.03) 30%, var(--navy) 31%, var(--navy) 43%, rgba(245, 236, 215, 0.03) 44%, rgba(245, 236, 215, 0.03) 50%, var(--navy) 51%, var(--navy) 63%, rgba(245, 236, 215, 0.03) 64%, rgba(245, 236, 215, 0.03) 71%, transparent 71%, transparent);
+            background-size: 60px 30px;
+        }
+
+        /* Cherry Blossom Animation */
+        @keyframes fall {
+            0% { transform: translate(0, -10vh) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translate(20vw, 110vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+        
+        .petal {
+            position: absolute;
+            background-color: #ffb7c5;
+            border-radius: 150% 0 150% 0;
+            width: 12px;
+            height: 12px;
+            opacity: 0;
+            animation: fall linear infinite;
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(255, 183, 197, 0.3);
+        }
+
+        /* Hide Scrollbar for horizontal scrolling elements */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Custom Toggle */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #C1121F;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #C1121F;
+        }
+        .toggle-checkbox:checked + .toggle-label:after {
+            transform: translateX(100%);
+            border-color: white;
+        }
+
+        /* Fade-up utility */
+        .fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="selection:bg-[#C1121F] selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-[#0D1B2A]/90 backdrop-blur-md border-b border-white/5 transition-all">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-[#F5ECD7] font-semibold tracking-widest text-lg font-jp">NIHONGO</span>
+                <div class="w-1.5 h-1.5 rounded-full bg-[#C1121F]"></div>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-[#F5ECD7]/80 text-sm font-medium">
+                <a href="#features" class="hover:text-white transition-colors">Khóa học</a>
+                <a href="#workflow" class="hover:text-white transition-colors">Lộ trình</a>
+                <a href="#pricing" class="hover:text-white transition-colors">Bảng giá</a>
+            </div>
+            <button class="text-sm font-medium text-[#0D1B2A] bg-[#F5ECD7] px-4 py-2 rounded-full hover:bg-white transition-colors shadow-sm">
+                Đăng Nhập
+            </button>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-pattern-dark flex items-center min-h-[90vh]">
+        <!-- Watermark -->
+        <div class="absolute right-[-5%] top-1/2 -translate-y-1/2 text-[30vw] font-jp text-[#F5ECD7] opacity-[0.03] select-none leading-none pointer-events-none">
+            学
+        </div>
+        
+        <!-- Animated Petals -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="petal" style="left: 10%; animation-duration: 12s; animation-delay: 0s;"></div>
+            <div class="petal" style="left: 30%; animation-duration: 15s; animation-delay: 3s; width: 8px; height: 8px;"></div>
+            <div class="petal" style="left: 50%; animation-duration: 18s; animation-delay: 1s; width: 14px; height: 14px;"></div>
+            <div class="petal" style="left: 70%; animation-duration: 14s; animation-delay: 5s;"></div>
+            <div class="petal" style="left: 90%; animation-duration: 16s; animation-delay: 2s; width: 10px; height: 10px;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-20 w-full">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Left Content -->
+                <div class="max-w-xl fade-up">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#D4AF37] text-xs font-medium mb-6">
+                        <iconify-icon icon="solar:star-fall-linear" stroke-width="1.5"></iconify-icon>
+                        <span>Nền tảng học tiếng Nhật thế hệ mới</span>
+                    </div>
+                    <h1 class="text-4xl lg:text-5xl lg:leading-[1.15] tracking-tight font-jp font-semibold text-[#F5ECD7] mb-6">
+                        Chinh Phục Tiếng Nhật —<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C1121F] to-[#ff4d5a]">Từng Bước, Đúng Hướng</span>
+                    </h1>
+                    <p class="text-base lg:text-lg text-[#F5ECD7]/70 mb-10 leading-relaxed font-medium">
+                        Khóa học bài bản, đề thi thực chiến, flashcard thông minh — tất cả trong một nền tảng được thiết kế chuyên biệt cho học viên Việt Nam.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-4">
+                        <button class="bg-[#C1121F] text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-[#a00f1a] transition-all shadow-[0_0_20px_rgba(193,18,31,0.3)] hover:shadow-[0_0_30px_rgba(193,18,31,0.5)]">
+                            Xem Khóa Học
+                        </button>
+                        <button class="border border-[#D4AF37] text-[#D4AF37] px-6 py-3 rounded-full text-sm font-semibold hover:bg-[#D4AF37]/10 transition-colors">
+                            Học Thử Miễn Phí
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Visual (Mockup) -->
+                <div class="relative lg:h-[500px] hidden lg:block fade-up" style="animation-delay: 0.2s;">
+                    <!-- Floating Dashboard elements -->
+                    <div class="absolute right-0 top-0 w-full max-w-md bg-[#F5ECD7] rounded-2xl shadow-2xl overflow-hidden border border-white/20 transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <div class="bg-white/50 backdrop-blur border-b border-black/5 p-4 flex items-center justify-between">
+                            <div class="flex gap-1.5">
+                                <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+                            </div>
+                            <span class="text-xs font-semibold text-[#0D1B2A]/50 font-jp tracking-wider">JLPT N2 PROGRESS</span>
+                        </div>
+                        <div class="p-6 space-y-6">
+                            <!-- Fake progress -->
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold text-[#0D1B2A] mb-2">
+                                    <span>Từ vựng &amp; Kanji</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="h-2 w-full bg-[#0D1B2A]/10 rounded-full overflow-hidden">
+                                    <div class="h-full bg-[#C1121F] w-[75%] rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Fake Flashcard -->
+                            <div class="bg-white p-6 rounded-xl shadow-sm border border-black/5 text-center relative overflow-hidden group">
+                                <div class="absolute top-0 right-0 w-16 h-16 bg-[#F5ECD7] rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+                                <span class="block text-4xl font-jp text-[#0D1B2A] mb-2">限界</span>
+                                <span class="block text-xs text-[#0D1B2A]/50 font-medium tracking-widest uppercase mb-4">genkai</span>
+                                <span class="block text-sm font-medium text-[#C1121F]">Giới hạn, ranh giới</span>
+                            </div>
+                            <!-- Fake Graph -->
+                            <div class="flex items-end gap-2 h-20 pt-4">
+                                <div class="w-full bg-[#D4AF37]/40 rounded-t-sm h-[40%]"></div>
+                                <div class="w-full bg-[#D4AF37]/60 rounded-t-sm h-[60%]"></div>
+                                <div class="w-full bg-[#D4AF37]/80 rounded-t-sm h-[45%]"></div>
+                                <div class="w-full bg-[#D4AF37] rounded-t-sm h-[80%] relative">
+                                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-[#0D1B2A] text-white text-[10px] px-2 py-1 rounded shadow-sm">Hôm nay</div>
+                                </div>
+                                <div class="w-full bg-[#0D1B2A]/10 rounded-t-sm h-[30%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. TRUST BAR -->
+    <section class="bg-[#0a1520] py-6 border-y border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex gap-8 md:gap-16 items-center justify-between overflow-x-auto hide-scrollbar snap-x">
+                <div class="flex items-center gap-3 shrink-0 snap-center">
+                    <iconify-icon icon="solar:users-group-two-rounded-linear" class="text-[#D4AF37] text-xl" stroke-width="1.5"></iconify-icon>
+                    <div>
+                        <div class="text-[#F5ECD7] font-semibold text-lg tracking-tight">2,000+</div>
+                        <div class="text-[#F5ECD7]/50 text-xs font-medium">Học Viên</div>
+                    </div>
+                </div>
+                <div class="hidden md:block w-px h-8 bg-white/10"></div>
+                <div class="flex items-center gap-3 shrink-0 snap-center">
+                    <iconify-icon icon="solar:user-speak-rounded-linear" class="text-[#D4AF37] text-xl" stroke-width="1.5"></iconify-icon>
+                    <div>
+                        <div class="text-[#F5ECD7] font-semibold text-lg tracking-tight">50+</div>
+                        <div class="text-[#F5ECD7]/50 text-xs font-medium">Giáo Viên Bản Ngữ</div>
+                    </div>
+                </div>
+                <div class="hidden md:block w-px h-8 bg-white/10"></div>
+                <div class="flex items-center gap-3 shrink-0 snap-center">
+                    <iconify-icon icon="solar:medal-ribbons-star-linear" class="text-[#D4AF37] text-xl" stroke-width="1.5"></iconify-icon>
+                    <div>
+                        <div class="text-[#F5ECD7] font-semibold text-lg tracking-tight">95%</div>
+                        <div class="text-[#F5ECD7]/50 text-xs font-medium">Đậu JLPT</div>
+                    </div>
+                </div>
+                <div class="hidden md:block w-px h-8 bg-white/10"></div>
+                <div class="flex items-center gap-3 shrink-0 snap-center">
+                    <iconify-icon icon="solar:sort-from-bottom-to-top-linear" class="text-[#D4AF37] text-xl" stroke-width="1.5"></iconify-icon>
+                    <div>
+                        <div class="text-[#F5ECD7] font-semibold text-lg tracking-tight">N5 → N1</div>
+                        <div class="text-[#F5ECD7]/50 text-xs font-medium">Coverage</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. FEATURES / CORE PRODUCTS -->
+    <section id="features" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl tracking-tight font-jp font-semibold text-[#0D1B2A] mb-4">Hệ Sinh Thái Toàn Diện</h2>
+                <div class="h-px w-16 bg-[#C1121F] mx-auto mb-4"></div>
+                <p class="text-[#0D1B2A]/60 font-medium max-w-2xl mx-auto text-sm md:text-base">Mọi công cụ bạn cần để làm chủ tiếng Nhật, được tích hợp liền mạch trên một nền tảng duy nhất.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl p-8 border border-black/5 hover:border-[#C1121F]/20 hover:shadow-xl hover:shadow-[#C1121F]/5 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-full bg-[#F5ECD7] flex items-center justify-center mb-6 group-hover:bg-[#C1121F] transition-colors">
+                        <iconify-icon icon="solar:play-circle-linear" class="text-xl text-[#C1121F] group-hover:text-white transition-colors" stroke-width="1.5"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-jp font-semibold text-[#0D1B2A] mb-3">Khóa Học Online</h3>
+                    <p class="text-sm text-[#0D1B2A]/60 leading-relaxed font-medium">Lộ trình từ N5 đến N1, video bài giảng HD chất lượng cao, học mọi lúc mọi nơi theo nhịp độ của riêng bạn.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl p-8 border border-black/5 hover:border-[#C1121F]/20 hover:shadow-xl hover:shadow-[#C1121F]/5 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-full bg-[#F5ECD7] flex items-center justify-center mb-6 group-hover:bg-[#C1121F] transition-colors">
+                        <iconify-icon icon="solar:document-text-linear" class="text-xl text-[#C1121F] group-hover:text-white transition-colors" stroke-width="1.5"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-jp font-semibold text-[#0D1B2A] mb-3">Đề Thi Thực Chiến</h3>
+                    <p class="text-sm text-[#0D1B2A]/60 leading-relaxed font-medium">Mock test JLPT chuẩn format, phân tích điểm yếu tự động bằng AI, luyện đề chuyên sâu theo từng kỹ năng.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl p-8 border border-black/5 hover:border-[#C1121F]/20 hover:shadow-xl hover:shadow-[#C1121F]/5 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-full bg-[#F5ECD7] flex items-center justify-center mb-6 group-hover:bg-[#C1121F] transition-colors">
+                        <iconify-icon icon="solar:cards-linear" class="text-xl text-[#C1121F] group-hover:text-white transition-colors" stroke-width="1.5"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-jp font-semibold text-[#0D1B2A] mb-3">Flashcard Thông Minh</h3>
+                    <p class="text-sm text-[#0D1B2A]/60 leading-relaxed font-medium">Hệ thống spaced repetition (lặp lại ngắt quãng), học Kanji, từ vựng, ngữ pháp hiệu quả gấp 3 lần.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. HOW IT WORKS -->
+    <section id="workflow" class="py-24 bg-white border-y border-black/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-2xl md:text-3xl tracking-tight font-jp font-semibold text-[#0D1B2A] text-center mb-16">Phương Pháp Học Tối Ưu</h2>
+            
+            <div class="relative grid md:grid-cols-3 gap-12 text-center">
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden md:block absolute top-6 left-[16.66%] right-[16.66%] h-px bg-gradient-to-r from-transparent via-[#0D1B2A]/10 to-transparent"></div>
+
+                <!-- Step 1 -->
+                <div class="relative z-10">
+                    <div class="w-12 h-12 mx-auto bg-[#0D1B2A] text-[#F5ECD7] rounded-full flex items-center justify-center text-lg font-jp font-semibold mb-6 shadow-lg">1</div>
+                    <h4 class="text-base font-semibold text-[#0D1B2A] mb-2">Đăng ký &amp; Kiểm tra</h4>
+                    <p class="text-xs text-[#0D1B2A]/60 font-medium px-4">Đánh giá năng lực đầu vào chính xác để xếp lớp phù hợp.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative z-10">
+                    <div class="w-12 h-12 mx-auto bg-[#C1121F] text-white rounded-full flex items-center justify-center text-lg font-jp font-semibold mb-6 shadow-lg shadow-[#C1121F]/30">2</div>
+                    <h4 class="text-base font-semibold text-[#0D1B2A] mb-2">Học theo lộ trình</h4>
+                    <p class="text-xs text-[#0D1B2A]/60 font-medium px-4">Tiếp thu kiến thức qua video và hệ thống bài tập cá nhân hóa.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative z-10">
+                    <div class="w-12 h-12 mx-auto bg-[#D4AF37] text-[#0D1B2A] rounded-full flex items-center justify-center text-lg font-jp font-semibold mb-6 shadow-lg shadow-[#D4AF37]/30">3</div>
+                    <h4 class="text-base font-semibold text-[#0D1B2A] mb-2">Luyện đề &amp; Đạt JLPT</h4>
+                    <p class="text-xs text-[#0D1B2A]/60 font-medium px-4">Thực chiến với bộ đề thi thử sát với kỳ thi thật để lấy chứng chỉ.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. COURSE SHOWCASE -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
+            <div>
+                <h2 class="text-3xl tracking-tight font-jp font-semibold text-[#0D1B2A] mb-2">Lộ Trình Nổi Bật</h2>
+                <p class="text-sm text-[#0D1B2A]/60 font-medium">Chọn điểm xuất phát phù hợp với mục tiêu của bạn.</p>
+            </div>
+            <div class="hidden md:flex gap-2">
+                <button class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-[#0D1B2A] hover:bg-white transition-colors">
+                    <iconify-icon icon="solar:arrow-left-linear" stroke-width="1.5"></iconify-icon>
+                </button>
+                <button class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-[#0D1B2A] hover:bg-white transition-colors">
+                    <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="pl-6 md:pl-[max(1.5rem,calc((100vw-80rem)/2))]">
+            <div class="flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-8 pr-6">
+                
+                <!-- Course N5 -->
+                <div class="shrink-0 w-[280px] sm:w-[320px] bg-white rounded-2xl p-6 border border-black/5 snap-start hover:-translate-y-1 hover:border-[#C1121F]/30 hover:shadow-lg transition-all duration-300">
+                    <div class="inline-block px-3 py-1 rounded-md bg-[#0D1B2A]/5 text-[#0D1B2A] text-xs font-semibold tracking-wider mb-4">MỚI BẮT ĐẦU</div>
+                    <h3 class="text-xl font-jp font-semibold text-[#0D1B2A] mb-1">JLPT N5 Starter</h3>
+                    <p class="text-xs text-[#0D1B2A]/50 font-medium mb-6">Xây dựng nền tảng vững chắc.</p>
+                    
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center gap-2 text-sm text-[#0D1B2A]/70 font-medium">
+                            <iconify-icon icon="solar:video-frame-linear" class="text-[#C1121F]"></iconify-icon> 80 bài giảng video
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-[#0D1B2A]/70 font-medium">
+                            <iconify-icon icon="solar:clock-circle-linear" class="text-[#C1121F]"></iconify-icon> Thời lượng: 3 tháng
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between mt-auto">
+                        <div class="text-lg font-semibold text-[#0D1B2A]">1.200.000đ</div>
+                        <button class="text-xs font-semibold text-[#C1121F] hover:text-[#0D1B2A] transition-colors flex items-center gap-1">
+                            Xem Chi Tiết <iconify-icon icon="solar:alt-arrow-right-linear"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course N4-N3 -->
+                <div class="shrink-0 w-[280px] sm:w-[320px] bg-white rounded-2xl p-6 border border-[#D4AF37]/30 shadow-md snap-start hover:-translate-y-1 hover:border-[#D4AF37] hover:shadow-lg transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-[#D4AF37] text-white text-[10px] font-semibold px-3 py-1 rounded-bl-lg">PHỔ BIẾN</div>
+                    <div class="inline-block px-3 py-1 rounded-md bg-[#D4AF37]/10 text-[#D4AF37] text-xs font-semibold tracking-wider mb-4">TRUNG CẤP</div>
+                    <h3 class="text-xl font-jp font-semibold text-[#0D1B2A] mb-1">JLPT N4-N3 Intermediate</h3>
+                    <p class="text-xs text-[#0D1B2A]/50 font-medium mb-6">Bứt phá giao tiếp &amp; đọc hiểu.</p>
+                    
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center gap-2 text-sm text-[#0D1B2A]/70 font-medium">
+                            <iconify-icon icon="solar:video-frame-linear" class="text-[#D4AF37]"></iconify-icon> 150 bài giảng video
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-[#0D1B2A]/70 font-medium">
+                            <iconify-icon icon="solar:clock-circle-linear" class="text-[#D4AF37]"></iconify-icon> Thời lượng: 6 tháng
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between mt-auto">
+                        <div class="text-lg font-semibold text-[#0D1B2A]">1.800.000đ</div>
+                        <button class="text-xs font-semibold text-[#D4AF37] hover:text-[#0D1B2A] transition-colors flex items-center gap-1">
+                            Xem Chi Tiết <iconify-icon icon="solar:alt-arrow-right-linear"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course N2 -->
+                <div class="shrink-0 w-[280px] sm:w-[320px] bg-white rounded-2xl p-6 border border-black/5 snap-start hover:-translate-y-1 hover:border-[#C1121F]/30 hover:shadow-lg transition-all duration-300">
+                    <div class="inline-block px-3 py-1 rounded-md bg-[#C1121F]/10 text-[#C1121F] text-xs font-semibold tracking-wider mb-4">CAO CẤP</div>
+                    <h3 class="text-xl font-jp font-semibold text-[#0D1B2A] mb-1">JLPT N2 Advanced</h3>
+                    <p class="text-xs text-[#0D1B2A]/50 font-medium mb-6">Sử dụng tiếng Nhật lưu loát trong công việc.</p>
+                    
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center gap-2 text-sm text-[#0D1B2A]/70 font-medium">
+                            <iconify-icon icon="solar:video-frame-linear" class="text-[#C1121F]"></iconify-icon> 200 bài giảng chuyên sâu
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-[#0D1B2A]/70 font-medium">
+                            <iconify-icon icon="solar:clock-circle-linear" class="text-[#C1121F]"></iconify-icon> Thời lượng: 8 tháng
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between mt-auto">
+                        <div class="text-lg font-semibold text-[#0D1B2A]">2.400.000đ</div>
+                        <button class="text-xs font-semibold text-[#C1121F] hover:text-[#0D1B2A] transition-colors flex items-center gap-1">
+                            Xem Chi Tiết <iconify-icon icon="solar:alt-arrow-right-linear"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course N1 -->
+                <div class="shrink-0 w-[280px] sm:w-[320px] bg-white rounded-2xl p-6 border border-black/5 snap-start hover:-translate-y-1 hover:border-[#0D1B2A]/30 hover:shadow-lg transition-all duration-300">
+                    <div class="inline-block px-3 py-1 rounded-md bg-[#0D1B2A] text-[#F5ECD7] text-xs font-semibold tracking-wider mb-4">MASTER</div>
+                    <h3 class="text-xl font-jp font-semibold text-[#0D1B2A] mb-1">JLPT N1 Master</h3>
+                    <p class="text-xs text-[#0D1B2A]/50 font-medium mb-6">Đỉnh cao ngôn ngữ, đọc hiểu tài liệu phức tạp.</p>
+                    
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center gap-2 text-sm text-[#0D1B2A]/70 font-medium">
+                            <iconify-icon icon="solar:video-frame-linear" class="text-[#0D1B2A]"></iconify-icon> 180 bài giảng thượng cấp
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-[#0D1B2A]/70 font-medium">
+                            <iconify-icon icon="solar:clock-circle-linear" class="text-[#0D1B2A]"></iconify-icon> Thời lượng: 10 tháng
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between mt-auto">
+                        <div class="text-lg font-semibold text-[#0D1B2A]">2.800.000đ</div>
+                        <button class="text-xs font-semibold text-[#0D1B2A] hover:text-[#C1121F] transition-colors flex items-center gap-1">
+                            Xem Chi Tiết <iconify-icon icon="solar:alt-arrow-right-linear"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SOCIAL PROOF / TESTIMONIALS -->
+    <section class="py-24 bg-pattern-dark border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-2xl md:text-3xl tracking-tight font-jp font-semibold text-[#F5ECD7] text-center mb-16">Câu Chuyện Thành Công</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl">
+                    <div class="flex gap-1 mb-4 text-[#D4AF37]">
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                    </div>
+                    <p class="text-[#F5ECD7]/80 text-sm italic mb-6 leading-relaxed">"Giao diện học tập rất tập trung. Mình đặc biệt thích tính năng flashcard lặp lại ngắt quãng, giúp mình nhớ Kanji lâu hơn hẳn cách học truyền thống."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#C1121F] to-[#D4AF37] flex items-center justify-center text-white font-jp text-sm">T</div>
+                        <div>
+                            <div class="text-sm font-semibold text-[#F5ECD7]">Tuấn Anh</div>
+                            <div class="text-xs text-[#F5ECD7]/50 font-medium">Đạt N2 sau 8 tháng</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl">
+                    <div class="flex gap-1 mb-4 text-[#D4AF37]">
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                    </div>
+                    <p class="text-[#F5ECD7]/80 text-sm italic mb-6 leading-relaxed">"Đề thi thử sát với đề thi thật đến 90%. Nhờ cày mock test trên nền tảng mà mình không bị bỡ ngỡ khi bước vào phòng thi."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#0D1B2A] to-[#C1121F] flex items-center justify-center text-white font-jp text-sm">M</div>
+                        <div>
+                            <div class="text-sm font-semibold text-[#F5ECD7]">Minh Châu</div>
+                            <div class="text-xs text-[#F5ECD7]/50 font-medium">Đạt N3 với 160/180</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl">
+                    <div class="flex gap-1 mb-4 text-[#D4AF37]">
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                        <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>
+                        <iconify-icon icon="solar:star-half-bold" class="text-sm"></iconify-icon>
+                    </div>
+                    <p class="text-[#F5ECD7]/80 text-sm italic mb-6 leading-relaxed">"Video bài giảng chất lượng, giáo viên giải thích ngữ pháp rất dễ hiểu. Một khoản đầu tư vô cùng xứng đáng cho tương lai."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#0D1B2A] font-jp text-sm">H</div>
+                        <div>
+                            <div class="text-sm font-semibold text-[#F5ECD7]">Hoàng Nam</div>
+                            <div class="text-xs text-[#F5ECD7]/50 font-medium">Học viên lộ trình N1</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. PRICING -->
+    <section id="pricing" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl tracking-tight font-jp font-semibold text-[#0D1B2A] mb-6">Gói Thành Viên Phù Hợp</h2>
+                
+                <!-- Toggle -->
+                <div class="flex items-center justify-center gap-3">
+                    <span class="text-sm font-medium text-[#0D1B2A]/60">Hàng tháng</span>
+                    <div class="relative inline-block w-12 h-6 align-middle select-none transition duration-200 ease-in">
+                        <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-[#0D1B2A]/10 appearance-none cursor-pointer z-10 transition-all duration-300 left-0">
+                        <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-[#0D1B2A]/10 cursor-pointer transition-colors duration-300"></label>
+                    </div>
+                    <span class="text-sm font-medium text-[#0D1B2A]">Hàng năm <span class="text-[10px] bg-[#C1121F]/10 text-[#C1121F] px-1.5 py-0.5 rounded ml-1 font-semibold">-20%</span></span>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 items-center max-w-5xl mx-auto">
+                <!-- Basic -->
+                <div class="p-8 rounded-2xl border border-black/5 bg-white">
+                    <h3 class="text-lg font-jp font-semibold text-[#0D1B2A] mb-2">Cơ Bản</h3>
+                    <p class="text-xs text-[#0D1B2A]/60 font-medium mb-6">Trải nghiệm nền tảng cơ bản.</p>
+                    <div class="text-3xl font-semibold text-[#0D1B2A] mb-8 tracking-tight">Miễn phí</div>
+                    <ul class="space-y-4 mb-8 text-sm text-[#0D1B2A]/80 font-medium">
+                        <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#0D1B2A]/30 text-base"></iconify-icon> Flashcard N5-N4</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#0D1B2A]/30 text-base"></iconify-icon> 3 đề thi thử JLPT</li>
+                        <li class="flex items-center gap-2 text-[#0D1B2A]/30 line-through"><iconify-icon icon="solar:close-circle-linear" class="text-base"></iconify-icon> Video bài giảng HD</li>
+                        <li class="flex items-center gap-2 text-[#0D1B2A]/30 line-through"><iconify-icon icon="solar:close-circle-linear" class="text-base"></iconify-icon> Hỗ trợ từ giáo viên</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl border border-black/10 text-sm font-semibold text-[#0D1B2A] hover:bg-black/5 transition-colors">Bắt Đầu Miễn Phí</button>
+                </div>
+
+                <!-- Standard (Popular) -->
+                <div class="p-8 rounded-2xl bg-[#0D1B2A] text-[#F5ECD7] relative transform lg:-translate-y-4 shadow-2xl shadow-[#0D1B2A]/20 ring-2 ring-[#D4AF37]/50">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#D4AF37] text-[#0D1B2A] text-xs font-semibold px-4 py-1 rounded-full shadow-sm">PHỔ BIẾN NHẤT</div>
+                    <h3 class="text-lg font-jp font-semibold mb-2">Tiêu Chuẩn</h3>
+                    <p class="text-xs text-[#F5ECD7]/60 font-medium mb-6">Đầy đủ công cụ tự học.</p>
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-3xl font-semibold tracking-tight">299.000đ</span>
+                        <span class="text-xs text-[#F5ECD7]/50 font-medium">/tháng</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-sm text-[#F5ECD7]/80 font-medium">
+                        <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#D4AF37] text-base"></iconify-icon> Full kho Flashcard N5-N1</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#D4AF37] text-base"></iconify-icon> 20 đề thi thử có giải chi tiết</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#D4AF37] text-base"></iconify-icon> Quyền truy cập Video bài giảng</li>
+                        <li class="flex items-center gap-2 text-[#F5ECD7]/30 line-through"><iconify-icon icon="solar:close-circle-linear" class="text-base"></iconify-icon> 1-1 với giáo viên</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-[#C1121F] text-white text-sm font-semibold hover:bg-[#a00f1a] transition-colors shadow-lg shadow-[#C1121F]/20">Đăng Ký Ngay</button>
+                </div>
+
+                <!-- Premium -->
+                <div class="p-8 rounded-2xl border border-black/5 bg-white">
+                    <h3 class="text-lg font-jp font-semibold text-[#0D1B2A] mb-2">Cao Cấp</h3>
+                    <p class="text-xs text-[#0D1B2A]/60 font-medium mb-6">Hỗ trợ tối đa để đỗ JLPT.</p>
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-3xl font-semibold tracking-tight text-[#0D1B2A]">499.000đ</span>
+                        <span class="text-xs text-[#0D1B2A]/50 font-medium">/tháng</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-sm text-[#0D1B2A]/80 font-medium">
+                        <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#C1121F] text-base"></iconify-icon> Tất cả tính năng Tiêu Chuẩn</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#C1121F] text-base"></iconify-icon> Mock test không giới hạn</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#C1121F] text-base"></iconify-icon> Sửa bài Writing &amp; Speaking</li>
+                        <li class="flex items-center gap-2 font-semibold text-[#0D1B2A]"><iconify-icon icon="solar:check-circle-linear" class="text-[#C1121F] text-base"></iconify-icon> Coaching 1-1 hàng tuần</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl border border-black/10 text-sm font-semibold text-[#0D1B2A] hover:bg-black/5 transition-colors">Liên Hệ Tư Vấn</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FINAL CTA -->
+    <section class="py-24 bg-pattern-dark relative border-t border-white/5">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl tracking-tight font-jp font-semibold text-[#F5ECD7] mb-6">Bắt Đầu Hành Trình Tiếng Nhật Của Bạn Ngay Hôm Nay</h2>
+            <p class="text-[#F5ECD7]/70 font-medium text-sm md:text-base mb-10 max-w-xl mx-auto">Tham gia cùng hơn 2,000 học viên đã chinh phục thành công chứng chỉ JLPT với phương pháp học tập hiện đại.</p>
+            
+            <form class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+                <input type="email" placeholder="Nhập email của bạn..." class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-[#F5ECD7] placeholder-[#F5ECD7]/40 focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] text-sm transition-all">
+                <button type="submit" class="shrink-0 px-6 py-3 bg-[#C1121F] text-white rounded-xl text-sm font-semibold hover:bg-[#a00f1a] transition-colors shadow-lg shadow-[#C1121F]/20">
+                    Đăng Ký Miễn Phí
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 9. FOOTER -->
+    <footer class="bg-[#0a1520] pt-16 pb-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-[#F5ECD7] font-semibold tracking-widest text-lg font-jp">NIHONGO</span>
+                        <div class="w-1.5 h-1.5 rounded-full bg-[#C1121F]"></div>
+                    </div>
+                    <p class="text-xs text-[#F5ECD7]/50 font-medium max-w-sm mb-6 leading-relaxed">Nền tảng học tiếng Nhật trực tuyến hàng đầu, mang đến giải pháp học tập toàn diện từ N5 đến N1 cho người Việt.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-[#F5ECD7]/70 hover:bg-white/10 hover:text-[#F5ECD7] transition-colors">
+                            <iconify-icon icon="solar:global-linear" class="text-sm"></iconify-icon>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-[#F5ECD7]/70 hover:bg-white/10 hover:text-[#F5ECD7] transition-colors">
+                            <iconify-icon icon="solar:play-circle-linear" class="text-sm"></iconify-icon>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-[#F5ECD7]/70 hover:bg-white/10 hover:text-[#F5ECD7] transition-colors">
+                            <iconify-icon icon="solar:smartphone-linear" class="text-sm"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-[#F5ECD7] font-semibold text-sm mb-4">Sản Phẩm</h4>
+                    <ul class="space-y-3 text-xs text-[#F5ECD7]/60 font-medium">
+                        <li><a href="#" class="hover:text-[#D4AF37] transition-colors">Khóa học JLPT</a></li>
+                        <li><a href="#" class="hover:text-[#D4AF37] transition-colors">Luyện đề thi thử</a></li>
+                        <li><a href="#" class="hover:text-[#D4AF37] transition-colors">Flashcard từ vựng</a></li>
+                        <li><a href="#" class="hover:text-[#D4AF37] transition-colors">Đánh giá năng lực</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-[#F5ECD7] font-semibold text-sm mb-4">Hỗ Trợ</h4>
+                    <ul class="space-y-3 text-xs text-[#F5ECD7]/60 font-medium">
+                        <li><a href="#" class="hover:text-[#D4AF37] transition-colors">Trung tâm trợ giúp</a></li>
+                        <li><a href="#" class="hover:text-[#D4AF37] transition-colors">Câu hỏi thường gặp</a></li>
+                        <li><a href="#" class="hover:text-[#D4AF37] transition-colors">Điều khoản sử dụng</a></li>
+                        <li><a href="#" class="hover:text-[#D4AF37] transition-colors">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-[10px] text-[#F5ECD7]/40 font-medium tracking-wide uppercase">© 2025 Nihongo Center. All rights reserved.</p>
+                <div class="flex gap-6 text-[10px] text-[#F5ECD7]/40 font-medium tracking-wide uppercase">
+                    <span>Made with precision</span>
+                    <span>Hanoi, Vietnam</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body></html>
