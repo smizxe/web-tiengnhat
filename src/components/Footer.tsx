@@ -1,6 +1,16 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function Footer() {
     return (
-        <footer className="bg-[#0a1520] pt-16 pb-8 border-t border-white/5">
+        <motion.footer
+            className="bg-[#0a1520] pt-16 pb-8 border-t border-white/5"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+        >
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                     <div className="col-span-1 md:col-span-2">
@@ -51,6 +61,6 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-        </footer>
+        </motion.footer>
     );
 }

@@ -1,12 +1,45 @@
+"use client";
+
+import { motion, Variants } from "framer-motion";
+
 export default function Testimonials() {
+    const container = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+            },
+        },
+    };
+
+    const item: Variants = {
+        hidden: { opacity: 0, y: 30 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    };
+
     return (
         <section className="py-24 bg-pattern-dark border-t border-white/5">
             <div className="max-w-7xl mx-auto px-6">
-                <h2 className="text-2xl md:text-3xl tracking-tight font-jp font-semibold text-[#F5ECD7] text-center mb-16">Câu Chuyện Thành Công</h2>
+                <motion.h2
+                    className="text-2xl md:text-3xl tracking-tight font-jp font-semibold text-[#F5ECD7] text-center mb-16"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6 }}
+                >
+                    Câu Chuyện Thành Công
+                </motion.h2>
 
-                <div className="grid md:grid-cols-3 gap-6">
+                <motion.div
+                    className="grid md:grid-cols-3 gap-6"
+                    variants={container}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-100px" }}
+                >
                     {/* Testimonial 1 */}
-                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl">
+                    <motion.div variants={item} className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl">
                         <div className="flex gap-1 mb-4 text-[#D4AF37]">
                             <iconify-icon icon="solar:star-bold" className="text-sm"></iconify-icon>
                             <iconify-icon icon="solar:star-bold" className="text-sm"></iconify-icon>
@@ -22,10 +55,10 @@ export default function Testimonials() {
                                 <div className="text-xs text-[#F5ECD7]/50 font-medium">Đạt N2 sau 8 tháng</div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Testimonial 2 */}
-                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl">
+                    <motion.div variants={item} className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl">
                         <div className="flex gap-1 mb-4 text-[#D4AF37]">
                             <iconify-icon icon="solar:star-bold" className="text-sm"></iconify-icon>
                             <iconify-icon icon="solar:star-bold" className="text-sm"></iconify-icon>
@@ -41,10 +74,10 @@ export default function Testimonials() {
                                 <div className="text-xs text-[#F5ECD7]/50 font-medium">Đạt N3 với 160/180</div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Testimonial 3 */}
-                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl">
+                    <motion.div variants={item} className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl">
                         <div className="flex gap-1 mb-4 text-[#D4AF37]">
                             <iconify-icon icon="solar:star-bold" className="text-sm"></iconify-icon>
                             <iconify-icon icon="solar:star-bold" className="text-sm"></iconify-icon>
@@ -60,8 +93,8 @@ export default function Testimonials() {
                                 <div className="text-xs text-[#F5ECD7]/50 font-medium">Học viên lộ trình N1</div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             </div>
         </section>
     );
