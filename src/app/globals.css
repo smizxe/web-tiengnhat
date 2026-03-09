@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0D1B2A;
+  --color-cream: #F5ECD7;
+  --color-red: #C1121F;
+  --color-gold: #D4AF37;
+}
+
+:root {
+  --navy: #0D1B2A;
+  --cream: #F5ECD7;
+  --red: #C1121F;
+  --gold: #D4AF37;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--cream);
+  color: var(--navy);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-jp {
+  font-family: 'Noto Serif JP', serif;
+}
+
+/* Subtle Seigaiha-inspired wave overlay using radial gradients */
+.bg-pattern-dark {
+  background-color: var(--navy);
+  background-image: radial-gradient(circle at 100% 150%, var(--navy) 24%, rgba(245, 236, 215, 0.03) 25%, rgba(245, 236, 215, 0.03) 28%, var(--navy) 29%, var(--navy) 36%, rgba(245, 236, 215, 0.03) 36%, rgba(245, 236, 215, 0.03) 40%, transparent 40%, transparent),
+                    radial-gradient(circle at 0 150%, var(--navy) 24%, rgba(245, 236, 215, 0.03) 25%, rgba(245, 236, 215, 0.03) 28%, var(--navy) 29%, var(--navy) 36%, rgba(245, 236, 215, 0.03) 36%, rgba(245, 236, 215, 0.03) 40%, transparent 40%, transparent),
+                    radial-gradient(circle at 50% 100%, rgba(245, 236, 215, 0.03) 10%, var(--navy) 11%, var(--navy) 23%, rgba(245, 236, 215, 0.03) 24%, rgba(245, 236, 215, 0.03) 30%, var(--navy) 31%, var(--navy) 43%, rgba(245, 236, 215, 0.03) 44%, rgba(245, 236, 215, 0.03) 50%, var(--navy) 51%, var(--navy) 63%, rgba(245, 236, 215, 0.03) 64%, rgba(245, 236, 215, 0.03) 71%, transparent 71%, transparent);
+  background-size: 60px 30px;
+}
+
+/* Cherry Blossom Animation */
+@keyframes fall {
+  0% { transform: translate(0, -10vh) rotate(0deg) scale(0.8); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translate(20vw, 110vh) rotate(360deg) scale(1.2); opacity: 0; }
+}
+
+.petal {
+  position: absolute;
+  background-color: #ffb7c5;
+  border-radius: 150% 0 150% 0;
+  width: 12px;
+  height: 12px;
+  opacity: 0;
+  animation: fall linear infinite;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(255, 183, 197, 0.3);
+}
+
+/* Hide Scrollbar for horizontal scrolling elements */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Toggle */
+.toggle-checkbox:checked {
+  right: 0;
+  border-color: #C1121F;
+}
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #C1121F;
+}
+.toggle-checkbox:checked + .toggle-label:after {
+  transform: translateX(100%);
+  border-color: white;
+}
+
+/* Fade-up utility */
+.fade-up {
+  animation: fadeUp 0.8s ease-out forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
